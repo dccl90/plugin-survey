@@ -29,7 +29,7 @@ exports.handler = function(context, event, callback) {
             client.chat.services(context.CHAT_SERVICE_SID)
                 .channels(event.ChannelSid)
                 .update({
-                    attributes: attributes
+                    attributes: JSON.stringify(attributes)
                 })
                 .then(channel => {
                     response.setStatusCode(204);
