@@ -84,15 +84,15 @@ The deactivate channel step is to prevent sessions from becoming stuck. Even tho
 Messaging Trigger Setup:
 
 * Connect Trigger to Split Based On Widget.
- * Target {{trigger.message.body}}
- * Add a transition to match if the message body contains "yes"
- * Connect the condition match transition to a send and wait reply widget
- * Connect the no condition match to a run function widget pointing to the deactivateChannel function.
+  * Target {{trigger.message.body}}
+  * Add a transition to match if the message body contains "yes"
+  * Connect the condition match transition to a send and wait reply widget
+  * Connect the no condition match to a run function widget pointing to the deactivateChannel function.
 
 * CSAT_Question (Send and wait reply widget)
- * Message body - Prompt user to rate the service
- * Reply transition, you can define your own I would reccomend the following guide to ensure the data is added to Flex Insights
-  * https://www.twilio.com/blog/post-task-surveys-with-flex-insights
+  * Message body - Prompt user to rate the service
+  * Reply transition, you can define your own I would reccomend the following guide to ensure the data is added to Flex Insights
+    * https://www.twilio.com/blog/post-task-surveys-with-flex-insights
     
  
 
