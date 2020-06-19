@@ -19,7 +19,7 @@ npm install
 
 ## Add v1 Functions to Twilio
 
-Add the functions from the Twilio Console:
+Add the functions to the Twilio Console:
 https://www.twilio.com/console/functions/manage
 
 Create the following environment variables:
@@ -35,7 +35,15 @@ The studio flow will have two triggers
 
 The API trigger is used to re-establish the messaging session.
 
-API Trigger - Connect to Run Function Widget
+API Trigger Setup:
+* Connect Trigger to Run Function Widget.
+* Configure Run Function Widget.
+** Link the reactivateChannel function
+** Add the following parameters:
+*** Key: ChannelSid
+*** Value: {{trigger.request.parameters.Channelsid}}
+*** Key: To
+*** Value: {{trigger.request.To}}
 
 ## Development
 
