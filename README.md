@@ -44,9 +44,9 @@ API Trigger Setup:
     * Value: {{trigger.request.parameters.Channelsid}}
     * Key: To
     * Value: {{trigger.request.To}}
- * On success connect to run function widget
+   * On success connect to run function widget
 * Create_Channel_Webhook Widget Configuration
- * Link to createChannelWebhook function
+* Link to createChannelWebhook function
  * Add the following parameters:
   * Key: ChannelSid
   * Value: {{trigger.request.parameters.ChannelSid}}
