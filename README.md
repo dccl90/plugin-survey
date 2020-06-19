@@ -37,13 +37,20 @@ The API trigger is used to re-establish the messaging session.
 
 API Trigger Setup:
 * Connect Trigger to Run Function Widget.
-* Configure Run Function Widget.
+* Reactivate_Channel Widget Configuration.
   * Link the reactivateChannel function
   * Add the following parameters:
     * Key: ChannelSid
     * Value: {{trigger.request.parameters.Channelsid}}
     * Key: To
     * Value: {{trigger.request.To}}
+ * On success connect to run function widget
+* Create_Channel_Webhook Widget Configuration
+ * Link to createChannelWebhook function
+ * Add the following parameters:
+  * Key: ChannelSid
+  * Value: {{trigger.request.parameters.ChannelSid}}
+ 
 
 ## Development
 
