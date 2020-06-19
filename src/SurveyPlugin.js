@@ -19,6 +19,7 @@ export default class SurveyPlugin extends FlexPlugin {
    */
   init(flex, manager) {
     this.registerReducers(manager);
+    const runtimeDomain = "";
     flex.Actions.addListener("afterCompleteTask",  payload => {
       const isChatTask = payload.task.taskChannelUniqueName === "sms" || 
         payload.task.taskChannelUniqueName === "chat";
@@ -31,7 +32,7 @@ export default class SurveyPlugin extends FlexPlugin {
           ChannelSid : payload.task.attributes.channelSid
         };
 
-        fetch('https://crimson-octopus-2455.twil.io/surveyExecution', {
+        fetch(`https://${runtimeDomain}/surveyExecution`, {
           method: 'POST', // or 'PUT'
           headers: {
             'Content-Type': 'application/json',
