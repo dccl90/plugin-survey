@@ -19,7 +19,7 @@ npm install
 
 ## Add v1 Functions to Twilio
 
-Add the functions to the Twilio Console:
+Add the functions from the functions directory to the Twilio Console:
 https://www.twilio.com/console/functions/manage
 
 Create the following environment variables:
@@ -45,11 +45,55 @@ API Trigger Setup:
     * Key: To
     * Value: {{trigger.request.To}}
    * On success connect to run function widget
+   
 * Create_Channel_Webhook Widget Configuration
   * Link to createChannelWebhook function
   * Add the following parameters:
     * Key: ChannelSid
     * Value: {{trigger.request.parameters.ChannelSid}}
+   * On success connect to run function widget
+   
+* Create_Session Widget Configuration
+  * Link to createOutboundSession function
+  * Add the following parameters:
+    * Key: ChannelSid
+    * Value: {{trigger.request.parameters.ChannelSid}}
+    * Key: To
+    * Value: {{trigger.request.To}}
+    * Key: From
+    * Value: {{trigger.request.From}}
+   * On success connect to send and wait reply widget
+   
+ * Send and Wait Reply Widget Configuration
+  * Add opt in message
+  * Connect all transitions to run function widget
+  
+* Deactivate_Channel Widget Configuration
+  * Link to deactivateChannel function
+  * Add the following parameters:
+    * Key: ChannelSid
+    * Value: {{trigger.request.parameters.ChannelSid}}
+    * Key: WeebhookSid
+    * Value: {{widgets.Create_Channel_Webhook.body.parsed.WebhookSid}}
+    * Key: SessionSid
+    * Value: {{widgets.Create_Session.body.parsed.SessionSid}}
+  * No further transition
+  
+The deactivate channel step is to prevent sessions from becoming stuck. Even though the reply transition will never occur we want to ensure when the session timer lapses the session and channel are cleaned up.
+
+Messaging Trigger Setup:
+
+* Connect Trigger to Split Based On Widget.
+ * Target {{trigger.message.body}}
+ * Add a transition to match if the message body contains "yes"
+ * Connect the condition match transition to a send and wait reply widget
+ * Connect the no condition match to a run function widget pointing to the deactivateChannel function.
+
+* CSAT_Question (Send and wait reply widget)
+ * Message body - Prompt user to rate the service
+ * Reply transition, you can define your own I would reccomend the following guide to ensure the data is added to Flex Insights
+  * https://www.twilio.com/blog/post-task-surveys-with-flex-insights
+    
  
 
 ## Development
