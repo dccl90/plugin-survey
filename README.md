@@ -2,6 +2,8 @@
 
 Twilio Flex Plugins allow you to customize the appearance and behavior of [Twilio Flex](https://www.twilio.com/flex). If you want to learn more about the capabilities and how to use the API, check out our [Flex documentation](https://www.twilio.com/docs/flex).
 
+Plugin and functions are for demonstration purposes only.
+
 ## Setup
 
 Make sure you have [Node.js](https://nodejs.org) as well as [`npm`](https://npmjs.com) installed.
@@ -14,6 +16,26 @@ cd
 # If you use npm
 npm install
 ```
+
+## Add v1 Functions to Twilio
+
+Add the functions from the Twilio Console:
+https://www.twilio.com/console/functions/manage
+
+Create the following environment variables:
+
+* CHAT_SERVICE_SID = ISXXX
+* PROXY_SERVICE_SID = ISXXX
+* SURVEY_STUDIO_FLOW_SID = FWXXX
+
+## Create the Studio Flow
+The studio flow will have two triggers
+* API Trigger
+* Message Trigger
+
+The API trigger is used to re-establish the messaging session.
+
+API Trigger - Connect to Run Function Widget
 
 ## Development
 
