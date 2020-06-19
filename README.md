@@ -91,9 +91,20 @@ Messaging Trigger Setup:
 
 * CSAT_Question (Send and wait reply widget)
   * Message body - Prompt user to rate the service
-  * Reply transition, you can define your own I would reccomend the following guide to ensure the data is added to Flex Insights
+  * Reply transition; you can define your own, but I would reccomend the following guide to ensure the data is added to Flex Insights
     * https://www.twilio.com/blog/post-task-surveys-with-flex-insights
-    
+  * No reply transition, connect to the Deactivate_Channel_2 run function widget
+
+* Deactivate_Channel Widget Configuration
+  * Link to deactivateChannel function
+  * Add the following parameters:
+    * Key: ChannelSid
+    * Value: {{trigger.message.ChannelSid}}
+    * Key: WeebhookSid
+    * Value: {{trigger.message.WebhookSid}}
+    * Key: SessionSid
+    * Value: {{trigger.message.ChannelAttributes.sessionSid}}
+  * No further transition
  
 
 ## Development
