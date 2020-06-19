@@ -1,6 +1,5 @@
 # Post Chat Survey Plugin
-
-Twilio Flex Plugins allow you to customize the appearance and behavior of [Twilio Flex](https://www.twilio.com/flex). If you want to learn more about the capabilities and how to use the API, check out our [Flex documentation](https://www.twilio.com/docs/flex).
+The following plugin and functions provide an example of how you can send customers a post chat survey once a task has been completed.
 
 Plugin and functions are for demonstration purposes only.
 
@@ -16,6 +15,9 @@ cd
 # If you use npm
 npm install
 ```
+
+## Edit Plugin
+Open the SurveyPlugin file in the src directory and add your Twillio runtime domain on line 22. Your runtime domain can be found here: https://www.twilio.com/console/runtime/overview 
 
 ## Add v1 Functions to Twilio
 
@@ -64,8 +66,8 @@ API Trigger Setup:
     * Value: {{trigger.request.From}}
    * On success connect to send and wait reply widget
    
- * Send and Wait Reply Widget Configuration
-  * Add opt in message
+ * Send and Wait for Reply Widget Configuration
+  * Add an opt-in message
   * Connect all transitions to run function widget
   
 * Deactivate_Channel Widget Configuration
@@ -79,19 +81,19 @@ API Trigger Setup:
     * Value: {{widgets.Create_Session.body.parsed.SessionSid}}
   * No further transition
   
-The deactivate channel step is to prevent sessions from becoming stuck. Even though the reply transition will never occur we want to ensure when the session timer lapses the session and channel are cleaned up.
+The deactivate channel step is to prevent sessions from becoming stuck. Even though the reply transition will never occur, we want to ensure when the session timer lapses the session and channel are cleaned up.
 
 Messaging Trigger Setup:
 
 * Connect Trigger to Split Based On Widget.
   * Target {{trigger.message.body}}
-  * Add a transition to match if the message body contains "yes"
-  * Connect the condition match transition to a send and wait reply widget
+  * Add a transition to match if the message body contains "yes".
+  * Connect the condition match transition to a send and wait for reply widget
   * Connect the no condition match to a run function widget pointing to the deactivateChannel function.
 
 * CSAT_Question (Send and wait reply widget)
   * Message body - Prompt user to rate the service
-  * Reply transition; you can define your own, but I would reccomend the following guide to ensure the data is added to Flex Insights
+  * Reply transition; you can define your own, but I would recommend the following blog post to ensure the data is added to Flex Insights
     * https://www.twilio.com/blog/post-task-surveys-with-flex-insights
   * No reply transition, connect to the Deactivate_Channel_2 run function widget
 
@@ -136,3 +138,6 @@ npm run build
 Afterwards, you'll find in your project a `build/` folder that contains a file with the name of your plugin project. For example, `plugin-example.js`. Take this file and upload it into the Assets part of your Twilio Runtime.
 
 Note: Common packages like `React`, `ReactDOM`, `Redux` and `ReactRedux` are not bundled with the build because they are treated as external dependencies so the plugin will depend on Flex to provide them globally.
+
+Twilio Flex Plugins allow you to customize the appearance and behavior of [Twilio Flex](https://www.twilio.com/flex). If you want to learn more about the capabilities and how to use the API, check out our [Flex documentation](https://www.twilio.com/docs/flex).
+
